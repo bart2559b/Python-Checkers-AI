@@ -17,7 +17,7 @@ def minimax(position, depth, max_player, game, turn):
                 maxEval = max(maxEval, evaluation)
                 if maxEval == evaluation:
                     best_move = move
-            
+            print(maxEval,"w1")
             return maxEval, best_move
         else:
             minEval = float('inf')
@@ -27,29 +27,29 @@ def minimax(position, depth, max_player, game, turn):
                 minEval = min(minEval, evaluation)
                 if minEval == evaluation:
                     best_move = move
-        
-        return minEval, best_move
+            print(minEval,"W2")
+            return minEval, best_move
     else:
         if max_player:
-            maxEval = float('-inf')
+            maxEval = float('inf')
             best_move = None
             for move in get_all_moves(position, RED, game):
                 evaluation = minimax(move, depth-1, False, game,turn)[0]
-                maxEval = max(maxEval, evaluation)
+                maxEval = min(maxEval, evaluation)
                 if maxEval == evaluation:
                     best_move = move
-            
+            print(maxEval,"r1")
             return maxEval, best_move
         else:
-            minEval = float('inf')
+            minEval = float('-inf')
             best_move = None
             for move in get_all_moves(position, WHITE, game):
                 evaluation = minimax(move, depth-1, True, game,turn)[0]
-                minEval = min(minEval, evaluation)
+                minEval = max(minEval, evaluation)
                 if minEval == evaluation:
                     best_move = move
-        
-        return minEval, best_move
+            print(minEval,"R2")
+            return minEval, best_move
 
 
 def simulate_move(piece, move, board, game, skip):

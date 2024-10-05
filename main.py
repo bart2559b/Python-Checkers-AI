@@ -28,7 +28,7 @@ def main():
             game.ai_move(new_board)
 
         if game.turn == RED:
-            value, new_board = minimax(game.get_board(), 4, RED, game, "r")
+            value, new_board = minimax(game.get_board(), 2, RED, game, "r")
             game.ai_move(new_board)
 
 
