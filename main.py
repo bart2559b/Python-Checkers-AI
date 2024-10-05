@@ -24,21 +24,26 @@ def main():
         clock.tick(FPS)
         
         if game.turn == WHITE:
-            value, new_board = minimax(game.get_board(), 4, WHITE, game)
+            value, new_board = minimax(game.get_board(), 4, WHITE, game, "w")
             game.ai_move(new_board)
+
+        if game.turn == RED:
+            value, new_board = minimax(game.get_board(), 4, RED, game, "r")
+            game.ai_move(new_board)
+
 
         if game.winner() != None:
             print(game.winner())
             run = False
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
+        # for event in pygame.event.get():
+        #     if event.type == pygame.QUIT:
+        #         run = False
             
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                pos = pygame.mouse.get_pos()
-                row, col = get_row_col_from_mouse(pos)
-                game.select(row, col)
+        #     if event.type == pygame.MOUSEBUTTONDOWN:
+        #         pos = pygame.mouse.get_pos()
+        #         row, col = get_row_col_from_mouse(pos)
+        #         game.select(row, col)
 
         game.update()
     
