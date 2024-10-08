@@ -31,25 +31,25 @@ def minimax(position, depth, max_player, game, turn):
             return minEval, best_move
     else:
         if max_player:
-            maxEval = float('inf')
+            minEval = float('inf')
             best_move = None
             for move in get_all_moves(position, RED, game):
                 evaluation = minimax(move, depth-1, False, game,turn)[0]
-                maxEval = min(maxEval, evaluation)
-                if maxEval == evaluation:
+                minEval = min(minEval, evaluation)
+                if minEval == evaluation:
                     best_move = move
-            print(maxEval,"r1")
-            return maxEval, best_move
+            print(minEval,"r1")
+            return minEval, best_move
         else:
-            minEval = float('-inf')
+            maxEval = float('-inf')
             best_move = None
             for move in get_all_moves(position, WHITE, game):
                 evaluation = minimax(move, depth-1, True, game,turn)[0]
-                minEval = max(minEval, evaluation)
-                if minEval == evaluation:
+                maxEval = max(maxEval, evaluation)
+                if maxEval == evaluation:
                     best_move = move
-            print(minEval,"R2")
-            return minEval, best_move
+            print(maxEval,"R2")
+            return maxEval, best_move
 
 
 def simulate_move(piece, move, board, game, skip):
